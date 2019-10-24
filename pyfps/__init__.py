@@ -13,6 +13,7 @@ def _print_fps(fps):
 class Fps:
     def __init__(self, func=_print_fps):
         self.func = func
+        self.last = 0
         self.reset()
         self.second = 1.0
 
@@ -23,6 +24,7 @@ class Fps:
     def update(self, *argc, **args):
         dur = time.time() - self.tick
         if dur >= self.second:
+            self.last = self.fps
             if self.func is not None:
                 self.func(self.fps, *argc, **args)
             self.reset()

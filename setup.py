@@ -1,10 +1,9 @@
 import setuptools
 
-with open('README.md', 'r') as fh:
-    long_description = fh.read()
+long_description = 'python fps display utility'
 
 setuptools.setup(name='pyfps',
-                 version='1.0.1',
+                 version='1.0.3',
                  author='bjtj',
                  author_email='bjtj10@gmail.com',
                  description='python fps tool',

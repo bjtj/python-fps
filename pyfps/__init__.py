@@ -6,16 +6,22 @@ from __future__ import unicode_literals
 import time
 
 
-def _print_fps(fps):
-    print('FPS: {}'.format(fps))
+def _print_fps(fps, name=None):
+    prefix = '' if name is None else '[{}] '.format(name)
+    print('{}FPS: {}'.format(prefix, fps))
 
 
 class Fps:
-    def __init__(self, func=_print_fps):
+    def __init__(self, func=_print_fps, name=None):
         self.func = func
         self.last = 0
         self.reset()
         self.second = 1.0
+        self.name = name
+
+    @property
+    def last_fps(self):
+        return self.last
 
     def reset(self):
         self.fps = 0
@@ -26,7 +32,7 @@ class Fps:
         if dur >= self.second:
             self.last = self.fps
             if self.func is not None:
-                self.func(self.fps, *argc, **args)
+                self.func(self.fps, *argc, **args, name=self.name)
             self.reset()
         else:
             self.fps += 1

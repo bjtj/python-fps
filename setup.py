@@ -3,7 +3,7 @@ import setuptools
 long_description = 'python fps display utility'
 
 setuptools.setup(name='pyfps',
-                 version='1.0.3',
+                 version='1.0.4',
                  author='bjtj',
                  author_email='bjtj10@gmail.com',
                  description='python fps tool',

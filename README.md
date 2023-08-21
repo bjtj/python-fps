@@ -2,7 +2,7 @@
 
 e.g.)
 
-```
+```python
 from pyfps import Fps
 
 ...
@@ -12,11 +12,13 @@ fps = Fps()
 ...
 
 while True:
-	fps.update()
-	
+    fps.update()
+
 ...
 ```
 
-```
+Output example:
+
+```bash
 FPS: 4
 ```

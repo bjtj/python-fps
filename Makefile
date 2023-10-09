@@ -9,7 +9,10 @@ build:
 upload:
 	twine upload dist/*
 
+sample:
+	python sample.py
+
 clean:
 	rm -rf build dist pyfps.egg-info
 
-.PHONY: init build upload clean
+.PHONY: init build upload clean sample

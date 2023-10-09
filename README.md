@@ -20,5 +20,5 @@ while True:
 Output example:
 
 ```bash
-FPS: 4
+FPS: 15 (elapsed: 1.024822235 sec.)
 ```

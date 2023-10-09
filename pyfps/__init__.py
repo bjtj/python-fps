@@ -6,9 +6,9 @@ from __future__ import unicode_literals
 import time
 
 
-def _print_fps(fps, name=None):
-    prefix = '' if name is None else '[{}] '.format(name)
-    print('{}FPS: {}'.format(prefix, fps))
+def _print_fps(fps: 'Fps'):
+    prefix = '' if fps.name is None else '[{}] '.format(fps.name)
+    print('{}FPS: {} (elapsed: {:.9f} sec.)'.format(prefix, fps.last_fps, fps.elapsed), flush=True)
 
 
 class Fps:
@@ -18,22 +18,27 @@ class Fps:
         self.reset()
         self.second = 1.0
         self.name = name
+        self.elapsed = 0
 
     @property
     def last_fps(self):
         return self.last
 
-    def reset(self):
+    def reset(self, offset=0):
         self.fps = 0
-        self.tick = time.time()
+        self.tick = time.time() + offset
 
     def update(self, *argc, **args):
+        _boom = False
         dur = time.time() - self.tick
         if dur >= self.second:
+            _boom = True
             self.last = self.fps
+            self.elapsed = dur
+            self.reset(dur - self.second)
             if self.func is not None:
-                self.func(self.fps, *argc, **args, name=self.name)
-            self.reset()
+                self.func(self, *argc, **args)
         else:
             self.fps += 1
+        return _boom
 
